@@ -24,7 +24,7 @@ import java.time.Duration;
 public class AutomationTesting {
 
 	 public static void main(String[] args) throws IOException {
-	        // Setup ChromeDriver using WebDriverManager
+	        
 		 System.setProperty("webdriver.chrome.driver", "C:\\browserdriver\\chromedriver.exe");
 		 String excelFilePath = "C:\\Downloads\\Excel.xlsx";	
 		 
@@ -36,10 +36,10 @@ public class AutomationTesting {
 	            for (int rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
 	                Row row = sheet.getRow(rowIndex);
 
-	                // Assuming the search term is in the second column (index 2)
+	                //search term is in the second column (index 2)
 	                Cell searchTermCell = row.getCell(2);
 
-	                // Check if the cell is not null before retrieving its value
+	                
 	                if (searchTermCell != null) {
 	                    String searchTerm = searchTermCell.getStringCellValue();
 
@@ -49,7 +49,7 @@ public class AutomationTesting {
 	                    driver.get(googleSearchUrl);
 	                    
 	                    //WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-	                    //wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//ul[@role='listbox']//li[@role='presentation']//div[@class='sbl1']/span")));
+	                    //wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*[@id=\"contents\"]/span[2]"")));
 
 	                    // Extract suggestions
 	                    List<WebElement> suggestionElements = driver.findElements(By.xpath("//*[@id=\"contents\"]/span[2]"));
@@ -71,12 +71,9 @@ public class AutomationTesting {
 	                        }
 	                    }
 
-
-	                    // Write suggestions back to the Excel file (assuming column index 4 and 5 for longest and lowest suggestions)
 	                    row.createCell(3).setCellValue(longestSuggestion);
 	                    row.createCell(4).setCellValue(lowestSuggestion);
-
-	                    // Close the WebDriver
+	                   
 	                    driver.quit();
 	                }
 	            }
